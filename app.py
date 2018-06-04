@@ -21,25 +21,25 @@ def get_results(equation):
     for pod in result.Pods():
         waPod = wap.Pod(pod)
         title = "Pod.title: " + waPod.Title()[0]
-        print title
+        print(title)
         for subpod in waPod.Subpods():
             waSubpod = wap.Subpod(subpod)
             plaintext = waSubpod.Plaintext()[0]
             img = waSubpod.Img()
             src = wap.scanbranches(img[0], 'src')[0]
             alt = wap.scanbranches(img[0], 'alt')[0]
-            print "-------------"
-            print "img.src: " + src
+            print("-------------")
+            print("img.src: " + src)
             image = "img.src: " + src
             data.append(src)
             answer.append(plaintext)
-            print "img.alt: " + alt
-        print "\n"
+            print("img.alt: " + alt)
+        print("\n")
 
     return data, answer
 
 
-@application.route('/get-answers', methods=['POST'])
+@app.route('/get-answers', methods=['POST'])
 def get_answer():
     data = request.get_json()
 
@@ -50,4 +50,4 @@ def get_answer():
 
 
 if __name__ == '__main__':
-    application.run(debug=True)
+    app.run(debug=True)
