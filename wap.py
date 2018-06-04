@@ -46,7 +46,7 @@ class WolframAlphaEngine:
   def PerformQuery(self, query=''):
     try:
       request = urllib2.Request(self.server, headers = {
-        "Content-Type" : "application/x-www-form-urlencoded; charset=UTF-8"
+        "Content-Type" : "app/x-www-form-urlencoded; charset=UTF-8"
         })
       result = urllib2.urlopen(request, query)
       result = result.read()
