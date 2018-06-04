@@ -19,7 +19,7 @@
 __author__ = 'derik66@gmail.com'
 __version__ = '1.1-devel'
 
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 from xml.dom import minidom
 import simplejson as json
 
@@ -45,10 +45,10 @@ class WolframAlphaEngine:
 
   def PerformQuery(self, query=''):
     try:
-      request = urllib2.Request(self.server, headers = {
+      request = urllib.request.Request(self.server, headers = {
         "Content-Type" : "app/x-www-form-urlencoded; charset=UTF-8"
         })
-      result = urllib2.urlopen(request, query)
+      result = urllib.request.urlopen(request, query)
       result = result.read()
     except:
       result = '<error>urllib2.urlopen ' + self.server + ' ' + query + '</error>'
@@ -65,36 +65,36 @@ class WolframAlphaQuery:
     self.Async = ''
  
   def ToURL(self):
-    self.Query = 'input=' + urllib2.quote(self.Query)
-    self.Query = self.Query + '&appid=' + urllib2.quote(self.appid)
+    self.Query = 'input=' + urllib.parse.quote(self.Query)
+    self.Query = self.Query + '&appid=' + urllib.parse.quote(self.appid)
     if self.ScanTimeout:
-      self.Query = self.Query + '&scantimeout=' + urllib2.quote(self.ScanTimeout)
+      self.Query = self.Query + '&scantimeout=' + urllib.parse.quote(self.ScanTimeout)
     if self.PodTimeout:
-      self.Query = self.Query + '&podtimeout=' + urllib2.quote(self.PodTimeout)
+      self.Query = self.Query + '&podtimeout=' + urllib.parse.quote(self.PodTimeout)
     if self.FormatTimeout:
-      self.Query = self.Query + '&formattimeout=' + urllib2.quote(self.FormatTimeout)
+      self.Query = self.Query + '&formattimeout=' + urllib.parse.quote(self.FormatTimeout)
     if self.Async:
-      self.Query = self.Query + '&async=' + urllib2.quote(self.Async)
+      self.Query = self.Query + '&async=' + urllib.parse.quote(self.Async)
     return
 
   def AddPodTitle(self, podtitle=''):
-    self.Query = self.Query + '&podtitle=' + urllib2.quote(podtitle)
+    self.Query = self.Query + '&podtitle=' + urllib.parse.quote(podtitle)
     return
 
   def AddPodIndex(self, podindex=''):
-    self.Query = self.Query + '&podindex=' + urllib2.quote(podindex)
+    self.Query = self.Query + '&podindex=' + urllib.parse.quote(podindex)
     return
 
   def AddPodScanner(self, podscanner=''):
-    self.Query = self.Query + '&podscanner=' + urllib2.quote(podscanner)
+    self.Query = self.Query + '&podscanner=' + urllib.parse.quote(podscanner)
     return
 
   def AddPodState(self, podstate=''):
-    self.Query = self.Query + '&podstate=' + urllib2.quote(podstate)
+    self.Query = self.Query + '&podstate=' + urllib.parse.quote(podstate)
     return
 
   def AddAssumption(self, assumption=''):
-    self.Query = self.Query + '&assumption=' + urllib2.quote(assumption)
+    self.Query = self.Query + '&assumption=' + urllib.parse.quote(assumption)
     return
 
 class WolframAlphaQueryResult:

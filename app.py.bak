@@ -29,11 +29,11 @@ def get_results(equation):
             src = wap.scanbranches(img[0], 'src')[0]
             alt = wap.scanbranches(img[0], 'alt')[0]
             print("-------------")
-            print(("img.src: " + src))
+            print("img.src: " + src)
             image = "img.src: " + src
             data.append(src)
             answer.append(plaintext)
-            print(("img.alt: " + alt))
+            print("img.alt: " + alt)
         print("\n")
 
     return data, answer
